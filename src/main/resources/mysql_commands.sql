@@ -16,3 +16,8 @@ CREATE TABLE `zombie_land`.`survivor` (
 ALTER TABLE `zombie_land`.`survivor`
 ADD COLUMN `infected` TINYINT NULL AFTER `longitude`;
 
+CREATE TABLE `zombie_land`.`survivor_infected_assessment` (
+  `id` INT NOT NULL,
+  `survivor_infected_id` INT NULL,
+  `survivor_witness_id` INT NULL,
+  PRIMARY KEY (`id`));

@@ -17,18 +17,34 @@ public class SurvivorServiceImpl implements SurvivorService {
     private SurvivorRepository survivorRepository;
 
     @Override
-    public Survivor updateSurvivorLocation(Survivor survivor) {
+    public Survivor add(Survivor survivor) {
+        return survivorRepository.save(survivor);
+    }
+
+    @Override
+    public Survivor updateSurvivorLocation(int survivorId, double latitude, double longitude) {
+        Survivor survivor = new Survivor();
+        survivor.setId(survivorId);
+        survivor.setLatitude(latitude);
+        survivor.setLongitude(longitude);
 
         return survivorRepository.save(survivor);
     }
 
     @Override
-    public Survivor survivorInfected(int survivorId) {
+    public void infectSurvivor(int survivorId) {
         Survivor survivor = new Survivor()
                 .setId(survivorId)
                 .setInfected(true);
 
-        return survivorRepository.save(survivor);
+        survivorRepository.save(survivor);
     }
+
+    @Override
+    public void infectionAssessment(int survivorInfectedId, int survivorWitnessId) {
+
+
+    }
+
 
 }

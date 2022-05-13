@@ -5,15 +5,20 @@ import com.backendrecruitmenttest.ZSSN.entity.Survivor;
 public interface SurvivorService {
 
     /**
-     * @apiNote Update location
      * @return survivor Entity
+     * @apiNote Update location
      */
-    Survivor updateSurvivorLocation(Survivor survivor);
+    Survivor updateSurvivorLocation(int survivorId, double latitude, double longitude);
 
     /**
-     * Turn on Infected Status on Survivor
-     * @param survivorId
+     * Add survivors
+     *
+     * @param survivor
      * @return
      */
-    Survivor survivorInfected(int survivorId);
+    Survivor add(Survivor survivor);
+
+    void infectSurvivor(int survivorId);
+
+    void infectionAssessment(int survivorInfectedId, int survivorWitnessId);
 }
