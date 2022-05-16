@@ -56,4 +56,9 @@ public class SurvivorController {
         return "Survivor Successfully Infected";
     }
 
+    @GetMapping()
+    public List<Survivor> getAll() {
+        return survivorService.get();
+    }
+
 }

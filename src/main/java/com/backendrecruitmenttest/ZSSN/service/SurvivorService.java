@@ -2,6 +2,8 @@ package com.backendrecruitmenttest.ZSSN.service;
 
 import com.backendrecruitmenttest.ZSSN.entity.Survivor;
 
+import java.util.List;
+
 public interface SurvivorService {
 
     /**
@@ -20,5 +22,5 @@ public interface SurvivorService {
 
     void infectSurvivor(int survivorId);
 
-    void infectionAssessment(int survivorInfectedId, int survivorWitnessId);
+    List<Survivor> get();
 }

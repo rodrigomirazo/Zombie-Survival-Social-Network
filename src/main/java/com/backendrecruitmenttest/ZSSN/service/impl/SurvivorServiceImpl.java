@@ -7,8 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Service
 public class SurvivorServiceImpl implements SurvivorService {
@@ -41,10 +39,9 @@ public class SurvivorServiceImpl implements SurvivorService {
     }
 
     @Override
-    public void infectionAssessment(int survivorInfectedId, int survivorWitnessId) {
-
-
+    public List<Survivor> get() {
+        Iterable<Survivor> survivors = survivorRepository.findAll();
+        return (List<Survivor>) survivors;
     }
-
 
 }

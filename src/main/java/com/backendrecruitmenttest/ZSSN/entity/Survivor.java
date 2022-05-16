@@ -1,26 +1,30 @@
 package com.backendrecruitmenttest.ZSSN.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "survivor")
 public class Survivor {
 
     @Id
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column
+    @Column(name = "name")
     private String name;
-    @Column
+    @Column(name = "age")
     private int age;
-    @Column
+    @Column(name = "gender")
     private String gender;
-    @Column
+    @Column(name = "latitude")
     private double latitude;
-    @Column
+    @Column(name = "longitude")
     private double longitude;
-    @Column
+    @Column(name = "infected")
     private boolean infected;
+    @OneToMany(mappedBy = "survivor")
+    private List<SurvivorInventoryItem> inventoryItem;
 
     public long getId() {
         return id;
@@ -85,6 +89,15 @@ public class Survivor {
         return this;
     }
 
+    public List<SurvivorInventoryItem> getInventoryItem() {
+        return inventoryItem;
+    }
+
+    public Survivor setInventoryItem(List<SurvivorInventoryItem> inventoryItem) {
+        this.inventoryItem = inventoryItem;
+        return this;
+    }
+
     @Override
     public String toString() {
         return "Survivor{" +
@@ -94,6 +107,7 @@ public class Survivor {
                 ", gender='" + gender + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
+                ", infected=" + infected +
                 '}';
     }
 }
