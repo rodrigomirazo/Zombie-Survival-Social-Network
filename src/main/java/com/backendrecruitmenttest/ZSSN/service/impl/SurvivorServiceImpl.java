@@ -1,6 +1,5 @@
 package com.backendrecruitmenttest.ZSSN.service.impl;
 
-import com.backendrecruitmenttest.ZSSN.dto.Resources;
 import com.backendrecruitmenttest.ZSSN.dto.SurvivorDto;
 import com.backendrecruitmenttest.ZSSN.entity.Survivor;
 import com.backendrecruitmenttest.ZSSN.mapper.SurvivorMapper;
@@ -11,8 +10,8 @@ import com.backendrecruitmenttest.ZSSN.service.ItemService;
 import com.backendrecruitmenttest.ZSSN.service.SurvivorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,17 +39,8 @@ public class SurvivorServiceImpl implements SurvivorService {
         Survivor survivorEntity = survivorMapper.toEntity(survivorDto);
         Survivor survivorSaved = survivorRepository.save(survivorEntity);
 
-        // Add Survivor Items
-        /*
-        List<SurvivorInventoryItem> survivorInventoryItems1 =
-        survivorResourcesMapper.toEntityList(survivorDto.getResources(), survivorSaved);
-        survivorInventoryItemRepo.saveAll(survivorInventoryItems1);
-        */
-
         //mapper
-        SurvivorDto survivorDto1 = survivorMapper.toDto(survivorEntity);
-        List<Resources> resourcesDto = survivorResourcesMapper.toDtoList(survivorEntity.getInventoryItem());
-        survivorDto1.setResources(resourcesDto);
+        SurvivorDto survivorDto1 = getById(survivorSaved.getId());
 
         return survivorDto1;
     }
@@ -83,6 +73,13 @@ public class SurvivorServiceImpl implements SurvivorService {
                 .stream()
                 .map(survivor -> survivorMapper.toDto(survivor))
                 .collect(Collectors.toList());
+    }
+
+    public SurvivorDto getById(Long survivorId) {
+        Optional<Survivor> survivors = survivorRepository.findById( survivorId);
+        Survivor survivorResult = survivors.get();
+
+        return survivorMapper.toDto(survivorResult);
     }
 
 }

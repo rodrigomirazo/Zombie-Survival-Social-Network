@@ -13,7 +13,7 @@ public class SurvivorInventoryItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
+    @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "item_id", referencedColumnName = "id")
     private InventoryItem inventoryItem;
 
