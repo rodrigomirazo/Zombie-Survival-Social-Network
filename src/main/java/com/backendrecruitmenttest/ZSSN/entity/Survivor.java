@@ -23,7 +23,7 @@ public class Survivor {
     private double longitude;
     @Column(name = "infected")
     private boolean infected;
-    @OneToMany(mappedBy = "survivor")
+    @OneToMany(mappedBy = "survivor", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<SurvivorInventoryItem> inventoryItem;
 
     public long getId() {

@@ -1,6 +1,7 @@
 package com.backendrecruitmenttest.ZSSN.controller;
 
 import com.backendrecruitmenttest.ZSSN.component.SurvivorComponent;
+import com.backendrecruitmenttest.ZSSN.dto.SurvivorDto;
 import com.backendrecruitmenttest.ZSSN.entity.Survivor;
 import com.backendrecruitmenttest.ZSSN.service.SurvivorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class SurvivorController {
 
     @PostMapping()
     @ResponseBody
-    public Survivor save(@RequestBody Survivor survivor) {
+    public SurvivorDto save(@RequestBody SurvivorDto survivor) {
         return survivorService.add(survivor);
     }
 
@@ -57,7 +58,7 @@ public class SurvivorController {
     }
 
     @GetMapping()
-    public List<Survivor> getAll() {
+    public List<SurvivorDto> getAll() {
         return survivorService.get();
     }
 

@@ -1,5 +1,6 @@
 package com.backendrecruitmenttest.ZSSN.service;
 
+import com.backendrecruitmenttest.ZSSN.dto.SurvivorDto;
 import com.backendrecruitmenttest.ZSSN.entity.Survivor;
 
 import java.util.List;
@@ -18,9 +19,9 @@ public interface SurvivorService {
      * @param survivor
      * @return
      */
-    Survivor add(Survivor survivor);
+    SurvivorDto add(SurvivorDto survivor);
 
     void infectSurvivor(int survivorId);
 
-    List<Survivor> get();
+    List<SurvivorDto> get();
 }

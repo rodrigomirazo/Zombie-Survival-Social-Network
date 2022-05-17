@@ -1,5 +1,6 @@
 package com.backendrecruitmenttest.ZSSN.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 
 @Entity
@@ -13,6 +14,10 @@ public class InventoryItem {
     private String itemQualifier;
     @Column
     private int points;
+
+    @OneToOne(mappedBy = "inventoryItem", cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    private SurvivorInventoryItem survivorInventoryItem;
 
     public int getId() {
         return id;
@@ -38,6 +43,15 @@ public class InventoryItem {
 
     public InventoryItem setPoints(int points) {
         this.points = points;
+        return this;
+    }
+
+    public SurvivorInventoryItem getSurvivorInventoryItem() {
+        return survivorInventoryItem;
+    }
+
+    public InventoryItem setSurvivorInventoryItem(SurvivorInventoryItem survivorInventoryItem) {
+        this.survivorInventoryItem = survivorInventoryItem;
         return this;
     }
 

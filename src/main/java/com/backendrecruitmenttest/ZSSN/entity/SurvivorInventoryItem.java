@@ -13,8 +13,9 @@ public class SurvivorInventoryItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "item_id")
-    private int itemId;
+    @OneToOne
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    private InventoryItem inventoryItem;
 
     @Column(name = "quantity")
     private int quantity;
@@ -32,12 +33,12 @@ public class SurvivorInventoryItem {
         return this;
     }
 
-    public int getItemId() {
-        return itemId;
+    public InventoryItem getInventoryItem() {
+        return inventoryItem;
     }
 
-    public SurvivorInventoryItem setItemId(int itemId) {
-        this.itemId = itemId;
+    public SurvivorInventoryItem setInventoryItem(InventoryItem inventoryItem) {
+        this.inventoryItem = inventoryItem;
         return this;
     }
 
@@ -63,7 +64,6 @@ public class SurvivorInventoryItem {
     public String toString() {
         return "SurvivorInventoryItem{" +
                 "id=" + id +
-                ", itemId=" + itemId +
                 ", quantity=" + quantity +
                 '}';
     }
