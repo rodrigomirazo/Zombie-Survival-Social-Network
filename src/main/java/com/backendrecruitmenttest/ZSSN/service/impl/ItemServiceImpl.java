@@ -58,11 +58,18 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public SurvivorInventoryItem updateSurvivorResourcesQuantity(SurvivorInventoryItem survivorInventoryItem) {
 
-        //SurvivorInventoryItem inventoryItem =
         survivorInventoryItemRepo.updateSurvivorInventoryItemQuantity(
                 survivorInventoryItem.getId(),
                 survivorInventoryItem.getQuantity()
                 );
+
+        return null;
+    }
+
+    @Override
+    public SurvivorInventoryItem insertSurvivorResourcesQuantity(SurvivorInventoryItem survivorInventoryItem) {
+
+        survivorInventoryItemRepo.save(survivorInventoryItem);
 
         return null;
     }

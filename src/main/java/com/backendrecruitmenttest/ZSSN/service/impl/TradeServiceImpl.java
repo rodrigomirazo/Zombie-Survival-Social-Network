@@ -71,13 +71,25 @@ public class TradeServiceImpl implements TradeService {
             if(itemExistAtSurvivor(primarySurvivorItems, secondaryResource)) {
                 // Update
                 itemService.updateSurvivorResourcesQuantity(
-                        survivorResourcesMapper.setUpSurvivorInventoryItem(secondaryResource, 1)
+                        survivorResourcesMapper.setUpSurvivorInventoryItem(secondaryResource, secondaryResource.getQuantity() - 1)
                 );
             } else {
                 // Insert
                 int itemId = getItemId(secondaryInventoryItem, secondaryResource.getName());
-                itemService.updateSurvivorResourcesQuantity(
+                itemService.insertSurvivorResourcesQuantity(
                         survivorResourcesMapper.setUpSurvivorInventoryItem((int) primarySurvivorItems.getId(), secondaryResource, itemId, 1)
+                );
+            }
+        });
+
+        // Add Item to Primary Survivor
+        // Iterate Secondary Items to be added to Primary Survivor
+        primaryResources.stream().forEach(primaryResource -> {
+
+            if(itemExistAtSurvivor(secondarySurvivorItems, primaryResource)) {
+                // Update
+                itemService.updateSurvivorResourcesQuantity(
+                        survivorResourcesMapper.setUpSurvivorInventoryItem(primaryResource, primaryResource.getQuantity() + 1)
                 );
             }
         });

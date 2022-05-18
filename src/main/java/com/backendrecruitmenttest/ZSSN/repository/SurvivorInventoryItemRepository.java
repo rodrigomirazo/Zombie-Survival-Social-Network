@@ -24,11 +24,4 @@ public interface SurvivorInventoryItemRepository extends CrudRepository<Survivor
             @Param("quantity") int quantity
             );
 
-    /*
-    @Modifying
-    @Query("insert into SurvivorInventoryItem u where u.id = :id")
-    void insertSurvivorResource(
-            @Param("id") int id
-    );
-    */
 }

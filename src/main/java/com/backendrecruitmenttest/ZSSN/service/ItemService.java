@@ -18,4 +18,6 @@ public interface ItemService {
     List<SurvivorInventoryItem> getSurvivorInventoryItems(List<Integer> survItemIds);
 
     SurvivorInventoryItem updateSurvivorResourcesQuantity(SurvivorInventoryItem survivorInventoryItem);
+
+    SurvivorInventoryItem insertSurvivorResourcesQuantity(SurvivorInventoryItem survivorInventoryItem);
 }
