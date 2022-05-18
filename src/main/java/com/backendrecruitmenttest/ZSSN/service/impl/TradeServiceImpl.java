@@ -133,7 +133,7 @@ public class TradeServiceImpl implements TradeService {
                 .map(resource -> resource.getPoints())
                 .reduce(0, (a, b) -> a + b);
 
-        if(primarySum.intValue() == secondarySum.intValue()) {
+        if(primarySum.intValue() <= secondarySum.intValue()) {
             return true;
         }
         return false;
