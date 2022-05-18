@@ -1,7 +1,6 @@
 package com.backendrecruitmenttest.ZSSN.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity

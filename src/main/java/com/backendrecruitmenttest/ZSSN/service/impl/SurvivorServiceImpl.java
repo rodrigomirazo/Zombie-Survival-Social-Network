@@ -2,6 +2,7 @@ package com.backendrecruitmenttest.ZSSN.service.impl;
 
 import com.backendrecruitmenttest.ZSSN.dto.SurvivorDto;
 import com.backendrecruitmenttest.ZSSN.entity.Survivor;
+import com.backendrecruitmenttest.ZSSN.entity.SurvivorInventoryItem;
 import com.backendrecruitmenttest.ZSSN.mapper.SurvivorMapper;
 import com.backendrecruitmenttest.ZSSN.mapper.SurvivorResourcesMapper;
 import com.backendrecruitmenttest.ZSSN.repository.SurvivorInventoryItemRepository;
@@ -75,11 +76,17 @@ public class SurvivorServiceImpl implements SurvivorService {
                 .collect(Collectors.toList());
     }
 
+    @Override
     public SurvivorDto getById(Long survivorId) {
         Optional<Survivor> survivors = survivorRepository.findById( survivorId);
         Survivor survivorResult = survivors.get();
 
         return survivorMapper.toDto(survivorResult);
+    }
+
+    @Override
+    public SurvivorInventoryItem insertSurvivorResource(SurvivorInventoryItem survivorInventoryItem) {
+        return null;
     }
 
 }

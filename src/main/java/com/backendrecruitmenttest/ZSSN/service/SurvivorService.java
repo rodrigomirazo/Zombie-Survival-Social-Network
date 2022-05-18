@@ -1,7 +1,9 @@
 package com.backendrecruitmenttest.ZSSN.service;
 
 import com.backendrecruitmenttest.ZSSN.dto.SurvivorDto;
+import com.backendrecruitmenttest.ZSSN.entity.InventoryItem;
 import com.backendrecruitmenttest.ZSSN.entity.Survivor;
+import com.backendrecruitmenttest.ZSSN.entity.SurvivorInventoryItem;
 
 import java.util.List;
 
@@ -24,4 +26,8 @@ public interface SurvivorService {
     void infectSurvivor(int survivorId);
 
     List<SurvivorDto> get();
+
+    SurvivorDto getById(Long survivorId);
+
+    SurvivorInventoryItem insertSurvivorResource(SurvivorInventoryItem survivorInventoryItem);
 }

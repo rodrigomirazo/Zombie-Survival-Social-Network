@@ -20,6 +20,27 @@ public class SurvivorResourcesMapper {
     public SurvivorResourcesMapper() {
     }
 
+    public SurvivorInventoryItem setUpSurvivorInventoryItem(Resources resource, int newQuantity) {
+
+        SurvivorInventoryItem survivorInventoryItem = new SurvivorInventoryItem();
+        survivorInventoryItem.setId(resource.getId());
+        survivorInventoryItem.setQuantity(newQuantity);
+
+        return survivorInventoryItem;
+    }
+
+    public SurvivorInventoryItem setUpSurvivorInventoryItem(int survivorId, Resources resource, int itemId, int newQuantity) {
+
+        SurvivorInventoryItem survivorInventoryItem = new SurvivorInventoryItem();
+        survivorInventoryItem.setSurvivor(new Survivor().setId(survivorId));
+        survivorInventoryItem.setId(resource.getId());
+        survivorInventoryItem.setInventoryItem(new InventoryItem().setId(itemId));
+        survivorInventoryItem.setQuantity(newQuantity);
+
+        return survivorInventoryItem;
+    }
+
+
     public List<SurvivorInventoryItem> toEntityList(List<Resources> resources, Survivor survivor) {
         List<SurvivorInventoryItem> survivorInventoryItems =
         resources.stream().map(resources1 -> toEntity(resources1, survivor)).collect(Collectors.toList());
