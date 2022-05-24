@@ -3,6 +3,9 @@ package com.backendrecruitmenttest.ZSSN.controller;
 import com.backendrecruitmenttest.ZSSN.dto.SurvivorDto;
 import com.backendrecruitmenttest.ZSSN.dto.SurvivorItemTradeDto;
 import com.backendrecruitmenttest.ZSSN.service.TradeService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,6 +21,10 @@ public class ResourceController {
     @Autowired
     private TradeService tradeService;
 
+    @ApiOperation(value = "Allow survivors to register their resources trades", notes = "You probably need backup")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully retrieved")
+    })
     @PutMapping("/trade")
     public String tradeItems(
             @RequestBody SurvivorItemTradeDto survivorItemTrade) {
