@@ -1,8 +1,11 @@
 package com.backendrecruitmenttest.ZSSN.controller;
 
+import com.backendrecruitmenttest.ZSSN.dto.ResourceAverage;
 import com.backendrecruitmenttest.ZSSN.dto.SurvivorDto;
+import com.backendrecruitmenttest.ZSSN.dto.SurvivorPointsLost;
 import com.backendrecruitmenttest.ZSSN.entity.InventoryItem;
 import com.backendrecruitmenttest.ZSSN.service.ItemService;
+import com.backendrecruitmenttest.ZSSN.service.ReportService;
 import com.backendrecruitmenttest.ZSSN.service.SurvivorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +25,9 @@ public class ReportsController {
 
     @Autowired
     private ItemService itemService;
+
+    @Autowired
+    private ReportService reportService;
 
     @GetMapping("/percentageOfInfectedSurvivors")
     public String infected() {
@@ -52,28 +58,19 @@ public class ReportsController {
     }
 
     @GetMapping("/amountOfEachResource")
-    public AtomicReference<String> amountOfEachResource() {
+    public List<ResourceAverage> amountOfEachResource() {
 
+        List<ResourceAverage> resourceAverages = reportService.amountOfEachResource();
 
-        List<SurvivorDto> survivorDtos = survivorService.get();
-        List<InventoryItem> inventoryItems = itemService.getAll();
+        return resourceAverages;
+    }
 
-        AtomicReference<String> resourceAmount = new AtomicReference<>("");
+    @GetMapping("/pointsLostDueInfectedSurvivor")
+    public List<SurvivorPointsLost> pointsLostDueInfectedSurvivor() {
 
-        inventoryItems.stream().forEach(inventoryItem -> {
+        List<SurvivorPointsLost> survivorPointsLosts = reportService.pointsLostDueInfectedSurvivor();
 
-            resourceAmount.set(resourceAmount + inventoryItem.getItemQualifier() + " => \n");
-
-            survivorDtos.stream()
-                    .forEach(survivorDto -> {
-
-                        survivorDto.getResources()
-                                .stream().filter(resources -> resources.getName().equalsIgnoreCase(inventoryItem.getItemQualifier()))
-                                .collect(Collectors.toList());
-                    });
-        });
-
-        return resourceAmount;
+        return survivorPointsLosts;
     }
 
 }
